@@ -1,0 +1,58 @@
+#all_articles{
+    width: 100%;
+    text-align: left;
+    border-style: inset;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-collapse: collapse;
+}
+
+#all_articles tr td{
+    border-style: inset ;
+}
+
+.calendar{
+
+    border-width: 1px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top:220px;
+    left:150px;
+}
+
+#month_select{
+    width: 130px;
+}
+
+.calendar table{
+    font-size: smaller;
+    width: 100%;
+    text-align: left;
+    border-style: inset;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-collapse: collapse;
+}
+
+.calendar table tr td{
+    border-style: inset ;
+}
+.calendar table tr th{
+    border-style: inset ;
+}
+
+.calendar table  tr :hover{
+    color: red ;
+    border-width: 5px;
+    border-color: #B00100;
+}
+
+
+#d11{
+    background-color: red;
+}
+
+#create_form{
+    position: relative;
+}

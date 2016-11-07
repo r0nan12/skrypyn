@@ -1,0 +1,41 @@
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</p>
+
+<div class = 'coment'>
+
+<h2>Comments</h2>
+<% @article.coments.each do |comment| %>
+
+    <p>
+      <%= comment.text %>
+    </p>
+      <% if can? :update , Coment %>
+          <p> <%= link_to 'Edit',edit_article_coment_path(@article,comment) %> </p>
+          <%  end  %>
+      <% if can? :destroy , Coment%>
+          <p> <%= link_to 'Delete', article_coment_path(@article,comment),method: :delete,data:{confirm:'Are you sure ?'} %> </p>
+      <% end %>
+<% end %>
+
+
+
+  </div>
+
+<% if can? :create, Coment %>
+    <%= render 'coments/form_coment' %>
+
+    <% end %>
+
+
+<br>
+<% if can? :update , Article %>
+<%= link_to 'Edit',edit_article_path(@article) %>
+    <% end %>
+<%= link_to 'Back', articles_path %>
