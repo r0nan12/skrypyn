@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161107032439) do
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "total_coments"
-    t.text     "create_date"
+    t.datetime "create_date"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

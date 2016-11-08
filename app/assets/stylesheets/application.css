@@ -14,6 +14,7 @@
  *= require_self
  */
 
+
 .search {
     position: relative;
 }
@@ -37,3 +38,59 @@
     text-decoration: none;
     color : black;
 }
+
+
+#all_articles{
+    width: 50%;
+    text-align: left;
+    border-style: inset;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-collapse: collapse;
+}
+
+#all_articles tr td{
+    border-style: inset ;
+}
+
+.calendar{
+    border-width: 1px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    bottom: -40px;
+    left:150px;
+}
+
+#month_select{
+    width: 130px;
+}
+
+.calendar table{
+    font-size: smaller;
+    width: 100%;
+    text-align: left;
+    border-style: inset;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-collapse: collapse;
+}
+
+.calendar table tr td{
+    border-style: inset ;
+}
+.calendar table tr th{
+    border-style: inset ;
+}
+
+.calendar table  tr :hover{
+    color: red ;
+    border-width: 5px;
+    border-color: #B00100;
+}
+
+
+#create_form{
+    position: relative;
+}
+

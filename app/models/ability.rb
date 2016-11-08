@@ -2,13 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @role = Role.new
-    user ||= @role.users.build
 
+    @user = user || User.new(role_id:3)
 
-        if user.role? == 'admin'
+        if @user.role.name == 'admin'
           can :manage, :all
-        elsif user.role? == 'author'
+        elsif @user.role.name == 'author'
           can :read, :all
           can :create, [Article, Coment]
           can :update, Article do |article|
@@ -24,11 +23,12 @@ class Ability
             coment.try(:user) == user
           end
 
-        end
-  else
-    can :read, [Article, Coment]
 
-          end
+         elsif @user.role.name == 'guest'
+          can :read, [Article, Coment]
+        end
+
+  end
 
 
 

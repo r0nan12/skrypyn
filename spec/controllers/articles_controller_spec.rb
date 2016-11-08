@@ -18,7 +18,7 @@ login_user
 
     describe "create acrion" do
       it "redirect to articles" do
-        post :create, article: { title: "titssle", text: "text" }
+        post :create, article: { title: "titssle", text: "textyy" ,create_date: "2016-11-07"}
         response.should redirect_to(assigns(:article))
       end
     end

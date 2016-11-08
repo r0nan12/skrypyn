@@ -8,8 +8,9 @@
   <%= @article.text %>
 </p>
 
-<div class = 'coment'>
+<% if can? :read, Coment %>
 
+<div class = 'coment'>
 <h2>Comments</h2>
 <% @article.coments.each do |comment| %>
 
@@ -27,6 +28,7 @@
 
 
   </div>
+      <% end %>
 
 <% if can? :create, Coment %>
     <%= render 'coments/form_coment' %>

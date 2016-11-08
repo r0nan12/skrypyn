@@ -1,51 +1,9 @@
-<h1 xmlns="http://www.w3.org/1999/html">New Article</h1>
-<div id = 'create_form'>
+
+<h1>New Article</h1>
 <%= render 'form' %>
 
-<div class="calendar">
-<div>
-  <select id = "month_select" class = 'as' name = "month">
-    <option value="0">January</option>
-    <option value="1">February</option>
-    <option value="2">March</option>
-    <option value="3">April</option>
-    <option value="4">May</option>
-    <option value="5">June</option>
-    <option value="6">July</option>
-    <option value="7">August</option>
-    <option value="8">September</option>
-    <option value="9">October</option>
-    <option value="10">November</option>
-    <option value="11">December</option>
-  </select>
 
-  <select  id="year_select" name = "year">
-    <option value="2009">2009</option>
-    <option value="2010">2010</option>
-    <option value="2011">2011</option>
-    <option value="2012">2012</option>
-    <option value="2013">2013</option>
-    <option value="2014">2014</option>
-    <option value="2015">2015</option>
-    <option value="2016">2016</option>
-    <option value="2017">2017</option>
-    <option value="2018">2018</option>
-    <option value="2019">2019</option>
-    <option value="2020">2020</option>
-  </select>
-
-</div>
-<table>
-  <tr>
-    <th>Mon</th>
-    <th>Tue</th>
-    <th>Wed</th>
-    <th>Th</th>
-    <th>Fr</th>
-    <th>Sat</th>
-    <th>Sun</th>
-  </tr>
-</table>
-</div>
-  </div>
 <p><%= link_to 'Back', articles_path %></p>
+
+
+<%= javascript_include_tag 'articles' %>

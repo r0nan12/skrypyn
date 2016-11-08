@@ -9,8 +9,12 @@
 <th>Text</th>
 <th>Comments</th>
 <th>Show artice</th>
+<% if can? :update , Article %>
 <th>Edit</th>
+    <% end %>
+<% if can? :destroy , Article %>
 <th>Delete</th>
+    <% end %>
 </thead>
 <% @articles.each { |f| %>
       <tbody>

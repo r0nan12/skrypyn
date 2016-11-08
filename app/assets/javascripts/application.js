@@ -12,40 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree
+//= require search.js
 
 
 
-$(document).on("ready", function () {
 
 
-    $('body').click(function () {
-        $('.search_result').css('display', 'none');
-    });
-
-    $('.search_form').on('keyup', function (e) {
-
-        $('.search_result').css('display', 'block');
-
-        $('.search_result').html('');
-        var val = this.elements.q.value;
-
-        $.ajax({
-            type: "GET",
-            url: "/search/index",
-            data: {q: val},
-            dataType: "json",
-            success: function (articles) {
-
-                for (var i in articles) {
-                    $('.search_result').append("<div><a href=\" /articles/"+articles[i].id+"\">"+ articles[i].title +"</a></div>");
-                }
-            }
-        });
-    });
 
 
-});
 
 
 
