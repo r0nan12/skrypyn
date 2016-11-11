@@ -1,36 +1,23 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
-
-    @user = user || User.new(role_id:3)
-
-        if @user.role.name == 'admin'
+    user ||= User.new
+        if user.role? :admin
           can :manage, :all
-        elsif @user.role.name == 'author'
+        elsif user.role? :author
           can :read, :all
           can :create, [Article, Coment]
-          can :update, Article do |article|
-            article.try(:user) == user
+          can :update, [Article,Coment] do |article, coment|
+            coment.try(:user_id)==user.id
+            article.try(:user_id)==user.id
           end
-          can :update, Coment do |coment|
-            coment.try(:user) == user
+          can :destroy, [Article,Coment] do |article,coment|
+            article.try(:user_id)==user.id
+            coment.try(:user_id)==user.id
           end
-          can :destroy, Article do |article|
-            article.try(:user) == user
-          end
-          can :destroy, Coment do |coment|
-            coment.try(:user) == user
-          end
-
-
-         elsif @user.role.name == 'guest'
+         else
           can :read, [Article, Coment]
         end
-
   end
-
-
-
-  end
+end
 

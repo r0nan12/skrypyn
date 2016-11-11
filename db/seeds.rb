@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+['admin','author','guest'].each do|role|
+  Role.find_or_create_by(name: role)
+end
+
+role = Role.all
+
+User.find_or_create_by(user_name: 'adminka') do |user|
+  user.email = 'roman-skrupun@yandex.ru'
+  user.password = 'adminka'
+  user.role = role.find_by(name:'admin')
+end
