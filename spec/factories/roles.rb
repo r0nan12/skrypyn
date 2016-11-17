@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :role do
-    name "author"
-
+    user
   end
 end

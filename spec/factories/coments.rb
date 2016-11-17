@@ -1,9 +1,7 @@
 FactoryGirl.define do
   factory :coment do
-    association(:article)
-    text "text"
-    user_id 1
-    article_id 1
-
+    text { Faker::Lorem.sentence(3, false, 1) }
+    user
+    article
   end
 end

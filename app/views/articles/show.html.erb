@@ -7,7 +7,11 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
-
+<% if @article.avatar? %>
+<p>
+  <%= image_tag @article.avatar.url %>
+</p>
+<% end %>
 <% if can? :read, Coment %>
 
 <div class = 'coment'>

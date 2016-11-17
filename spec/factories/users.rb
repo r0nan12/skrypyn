@@ -1,9 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    association(:role)
-    sequence(:email) { |n| "email_#{n}@email.ua" }
-    password "password"
-    role_id 2
-
+    user_name { Faker::Name.name }
+    email { Faker::Internet.email }
+    password { Faker::Internet.password(6) }
   end
 end

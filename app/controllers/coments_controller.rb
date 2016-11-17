@@ -1,19 +1,17 @@
 class ComentsController < ApplicationController
+  load_and_authorize_resource :article
   load_and_authorize_resource except: :create
-  before_action :find_coment_by_id, only: [:index,:edit,:update,:destroy]
-  before_action :find_article_by_id, only: [:edit,:update]
-
   def index
   end
 
   def create
     @coment = Coment.new(comment_params)
     if @coment.save
-      flash[:notice] = "Comment was added success"
-      redirect_to article_path(find_article_by_id)
-  else
-    flash[:alert] = @coment.errors.full_messages
-    redirect_to article_path(find_article_by_id)
+      flash[:notice] = 'Comment was added success'
+      redirect_to article_path(@article)
+      else
+        flash[:alert] = @coment.errors.full_messages
+        redirect_to article_path(@article)
     end
   end
 
@@ -21,37 +19,25 @@ class ComentsController < ApplicationController
   end
 
   def update
-    if @coment.update(comment_params)
-      redirect_to article_path(find_article_by_id)
-    else
-      render 'edit'
+    if @coment.update(update_params)
+      redirect_to article_path(@article)
+      else
+        render 'edit'
     end
   end
 
   def destroy
     @coment.destroy
-    redirect_to article_path(find_article_by_id)
+    redirect_to article_path(@article)
   end
 
   private
 
-  def find_coment_by_id
-    @coment = Coment.find(params[:id])
+  def update_params
+    params.require(:coment).permit(:text).merge(article: @article)
   end
-
-  private
-
-  def find_article_by_id
-    @article = Article.find(params[:article_id])
-  end
-
-
-  private
 
   def comment_params
-    params.require(:coment).permit(:text).merge(user: current_user, article: find_article_by_id )
+    params.require(:coment).permit(:text).merge(user: current_user, article: @article)
   end
-
-
-
 end

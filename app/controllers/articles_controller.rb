@@ -1,63 +1,55 @@
 class ArticlesController < ApplicationController
-    load_and_authorize_resource except: :create
-    before_action :find_by_id, only: [:show,:edit,:update,:destroy]
-
-def index
-	@articles = Article.all
-
-end
-
-def show
-end
-
-def new
-	@article = Article.new
-end
-
-def create
-  create_date = params[:article][:create_date]
-  if create_date
-    params[:article][:create_date] = create_date.to_datetime
+  load_and_authorize_resource except: :create
+  def index
   end
 
-  @article = Article.new(article_params)
+  def show
+  end
 
-  if @article.save
-    flash[:alert] = "Article successfully created"
-    redirect_to @article
-  else
-    render 'new'
+  def new
+  end
+
+  def create
+    @article = Article.new(article_params)
+    if @article.save
+      flash[:alert] = 'Article successfully created'
+      redirect_to @article
+      else
+        render 'new'
     end
   end
 
-
-def edit
-end
-
-def update
-  if @article.update(article_params)
-    redirect_to @article
-  else
-    render 'edit'
+  def edit
   end
-end
 
-def destroy
-	@article.destroy
-	redirect_to articles_path
-end
+  def update
+    if @article.update(update_params)
+      redirect_to @article
+      else
+        render 'edit'
+    end
+  end
 
+  def destroy
+    @article.destroy
+    redirect_to articles_path
+  end
 
-   private
-
-  def article_params
-	  params.require(:article).permit( :title, :text, :create_date).merge(user: current_user)
+  def search
+    title = params[:q]
+    @articles = Article.search(title)
+    respond_to do |format|
+      format.json { render json: @articles } if @articles
+    end
   end
 
   private
 
-  def find_by_id
-    @article = Article.find(params[:id])
+  def update_params
+    params.require(:article).permit(:title, :text, :avatar, :delete_avatar, :create_date)
   end
 
+  def article_params
+    params.require(:article).permit(:title, :text, :avatar, :avatar_remote_url, :create_date).merge(user: current_user)
+  end
 end

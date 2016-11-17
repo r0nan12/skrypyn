@@ -3,18 +3,22 @@ class User < ApplicationRecord
   has_many :articles
   has_many :coments, through: :articles
   validates :user_name,uniqueness: true
-  before_create :addrole
+  after_create :addrole
 
-  # Include default users modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  def role?(role)
-    self.role && self.role.name == role.to_s
+
+  def self.admin?(user)
+    user.role ==  Role.find_by_name('admin')
+  end
+  def self.author?(user)
+    user.role ==  Role.find_by_name('author')
   end
   private
   def addrole
-    self.role = Role.find_by_name('author')
+    role = Role.find_by_name('author')
+    self.update(role: role) if self.role.nil?
   end
 end
 

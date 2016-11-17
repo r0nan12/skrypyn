@@ -7,6 +7,9 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sqlite3'
 gem 'devise'
 gem 'cancan'
+gem 'faker'
+gem "paperclip", :git => "https://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk', '~> 2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -52,4 +55,5 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
+  gem 'database_cleaner'
 end
