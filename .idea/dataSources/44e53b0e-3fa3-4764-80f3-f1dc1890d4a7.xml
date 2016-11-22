@@ -202,27 +202,41 @@
       <mandatory>1</mandatory>
       <data-type>DATETIME(0,-1)|12</data-type>
     </column>
-    <index id="61" parent="8" name="index_users_on_email">
+    <column id="61" parent="8" name="confirmation_token">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="62" parent="8" name="confirmed_at">
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="63" parent="8" name="confirmation_sent_at">
+      <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <index id="64" parent="8" name="index_users_on_email">
       <columns>email</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="62" parent="8" name="index_users_on_user_name">
+    <index id="65" parent="8" name="index_users_on_user_name">
       <columns>user_name</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="63" parent="8" name="index_users_on_role_id">
+    <index id="66" parent="8" name="index_users_on_role_id">
       <columns>role_id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="64" parent="8" name="index_users_on_reset_password_token">
+    <index id="67" parent="8" name="index_users_on_reset_password_token">
       <columns>reset_password_token</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="65" parent="8">
+    <index id="68" parent="8" name="index_users_on_confirmation_token">
+      <columns>confirmation_token</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="69" parent="8">
       <columns>id</columns>
       <primary>1</primary>
     </key>

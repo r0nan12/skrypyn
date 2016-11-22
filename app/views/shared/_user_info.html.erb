@@ -1,0 +1,18 @@
+<div class="user_info">
+  <% if user_signed_in? %>
+      <% if can? :create, Article %>
+          <%= link_to new_article_path do %>
+              <i class="fa fa-file-text-o" aria-hidden="true"> Add new article</i>
+          <% end %>
+          <span>
+            <%= link_to  destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </span>
+      <% end %>
+  <% else %>
+      <%= link_to new_user_session_path do %>
+          <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+      <% end %>
+  <% end %>
+</div>

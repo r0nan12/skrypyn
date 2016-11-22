@@ -50,15 +50,20 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    aws-sdk (2.6.22)
-      aws-sdk-resources (= 2.6.22)
-    aws-sdk-core (2.6.22)
+    autoprefixer-rails (6.5.3)
+      execjs
+    aws-sdk (2.6.26)
+      aws-sdk-resources (= 2.6.26)
+    aws-sdk-core (2.6.26)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.6.22)
-      aws-sdk-core (= 2.6.22)
+    aws-sdk-resources (2.6.26)
+      aws-sdk-core (= 2.6.26)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.6)
     cancan (1.6.10)
@@ -84,6 +89,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    eventmachine (1.2.1)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -93,6 +99,8 @@ GEM
     faker (1.6.6)
       i18n (~> 0.5)
     ffi (1.9.14)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -120,6 +128,8 @@ GEM
     minitest (5.9.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
+    node (0.0.2)
+      eventmachine
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
@@ -214,12 +224,14 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   aws-sdk (~> 2)
+  bootstrap-sass
   byebug
   cancan
   coffee-rails (~> 4.2)
@@ -227,9 +239,12 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  mail
+  node
   paperclip!
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
@@ -242,6 +257,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console
+  will_paginate (~> 3.1.1)
 
 BUNDLED WITH
    1.13.6

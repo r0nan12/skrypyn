@@ -8,7 +8,7 @@ $(document).on("ready", function () {
         var val = this.elements.q.value;
         $.ajax({
             type: "GET",
-            url: 'articles/search',
+            url: '/articles/search',
             data: {q: val},
             dataType: 'json',
             success: function (articles) {

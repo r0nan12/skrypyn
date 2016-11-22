@@ -1,44 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Blog</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Blog</title>
+  <%= csrf_meta_tags %>
 
-  <body>
-  <div class = "search">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <%= form_tag(articles_search_path, method: "get", :class => "search_form", remote: "true", AUTOCOMPLETE: "off" ) do %>
-        <%= label_tag(:q, "Search for:") %>
-        <%= text_field_tag(:q) %>
-    <% end %>
+<body>
+<%= render 'shared/flash' %>
+<%= render 'shared/main_page_header' %>
+<div class = "main_container">
+  <%= yield %>
+</div>
+<%= render 'shared/footer' %>
+</body>
 
-    <div class = "search_result">
-
-    </div>
-
-    </div>
-
-  <% if flash[:notice] || flash[:alert] %>
-      <div class="notice"><%= flash[:notice]  %></div>
-      <div class="alert"><%= flash[:alert] %></div>
-  <% end %>
-  <% if user_signed_in? %>
-  <%= current_user.email   %>
-
-  <%= link_to "Sign out" , destroy_user_session_path , method: :delete%>
-      <% else %>
-      <%= link_to "Sign in" , new_user_session_path %>
-      <% end %>
-      <div class = "container">
-    <%= yield %>
-        </div>
-
-  </body>
-
-  <script type="text/javascript">
-  </script>
 </html>

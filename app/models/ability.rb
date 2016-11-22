@@ -2,12 +2,12 @@ class Ability
   include CanCan::Ability
   def initialize(user)
     user ||= User.new
-    if User.admin?(user)
+    if user.admin?
       can :manage, :all
-    elsif User.author?(user)
+    elsif user.author?
       authors_ability(user)
-      else
-        can :read, [Article, Coment]
+    else
+      can :read, [Article, Coment]
     end
   end
 

@@ -1,0 +1,138 @@
+//= require_self
+
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import '*';
+
+.post-by{
+  font-family: FreeMono;
+}
+
+.main_container{
+  position: relative;
+  margin: 0px;
+  padding: 15px;
+}
+
+article .post-title{
+  text-align: center;
+}
+
+.post-subtitle{
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  max-height: 55px;
+  overflow: hidden;
+}
+
+.search {
+  margin-top: 10px;
+  position: absolute;
+}
+
+.user_info{
+  position: absolute;
+  right: 0px;
+  color: white;
+}
+.user_info i{
+  color: white;
+}
+
+.user_info span{
+  position: relative;
+  right: -30px;
+}
+
+.search_result{
+    padding: 5px;
+    border: solid 1px whitesmoke ;
+    display: none;
+    position: absolute;
+    width: 235px;
+    background-color: snow;
+}
+
+.search_result div :hover{
+    background-color: lightgrey;
+}
+
+.search_result a {
+    text-decoration: none;
+    color : black;
+}
+
+.calendar{
+  display: none;
+  background-color: white;
+  border-width: 1px;
+  position: absolute;
+  width: 280px;
+  height: auto;
+  bottom: 150px;
+  left:300px;
+}
+
+.calendar div{
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    background-color: lightgrey;
+}
+
+#month_select{
+    width: 130px;
+}
+
+.calendar table{
+    font-size: smaller;
+    width: 100%;
+    text-align: center;
+    border-style: inset;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-collapse: collapse;
+}
+
+.calendar table tr td{
+    border-style: inset ;
+}
+.calendar table tr th{
+    border-style: inset ;
+}
+
+.calendar table  tr :hover{
+    background-color: lightgrey ;
+}
+
+#month_dec, #month_inc{
+    padding-right:15px ;
+    padding-left:15px ;
+}
+
+#year_dec{
+    padding-left: 20px;
+}
+
+#year_inc{;
+    padding-right: 20px;
+}
+
+.new_article textarea{
+  width: 100%;
+  height: 250px;
+}
+
+.edit_article textarea{
+  width: 100%;
+  height: 250px;
+}
+
+.paginate{
+  margin-left: 40%;
+  max-width: 40%;
+}

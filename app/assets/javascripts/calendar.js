@@ -5,9 +5,11 @@ $(document).ready(function () {
     var month_arr = ['Jenuary','Fabruary','March','April','May','June','July','August','September','October','November','December']
     var days_arr = ['Mon','Tue','Wed','Th','Fr','Sat','Sun'];
     var str;
-    $('.container a').before('<div id="create_form"></div>');
-    $('#create_form').append($('form')[1]);
-    $('#create_form').append('<div class="calendar"></div>');
+
+    $('#create_date input').on('focus',function () {
+       $('.calendar').css('display','block');
+    });
+    $('.main_container').append('<div class="calendar"></div>');
     $('.calendar').append('<div><span class="fa fa-angle-left" id = "year_dec"></span><span class = "fa fa-angle-double-left" id = "month_dec"></span><span id = "date"></span><span <i class = "fa fa-angle-double-right" id = "month_inc"></span><span class="fa fa-angle-right" id = "year_inc"></span></div>');
     $('.calendar').append('<table><tr></tr></table>');
 

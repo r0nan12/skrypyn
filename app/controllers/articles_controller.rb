@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   load_and_authorize_resource except: :create
   def index
+    @articles = Article.paginate(page: params[:page], per_page: 2)
   end
 
   def show
@@ -14,8 +15,8 @@ class ArticlesController < ApplicationController
     if @article.save
       flash[:alert] = 'Article successfully created'
       redirect_to @article
-      else
-        render 'new'
+    else
+      render 'new'
     end
   end
 
@@ -25,8 +26,8 @@ class ArticlesController < ApplicationController
   def update
     if @article.update(update_params)
       redirect_to @article
-      else
-        render 'edit'
+    else
+      render 'edit'
     end
   end
 
@@ -39,14 +40,15 @@ class ArticlesController < ApplicationController
     title = params[:q]
     @articles = Article.search(title)
     respond_to do |format|
-      format.json { render json: @articles } if @articles
+      format.json { render json: @articles } unless title.empty?
     end
   end
 
   private
 
   def update_params
-    params.require(:article).permit(:title, :text, :avatar, :delete_avatar, :create_date)
+    # merge_params = params[:id] ? {user: current_user} : {}
+    params.require(:article).permit(:title, :text, :avatar, :avatar, :avatar_remote_url, :delete_avatar, :create_date)
   end
 
   def article_params

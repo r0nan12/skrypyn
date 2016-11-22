@@ -1,4 +1,6 @@
 <h1>Editing article</h1>
 <%= render 'edit_form' %>
-<%= link_to 'Back', articles_path %>
+<br><%= link_to articles_path do %>
+    <i class="fa fa-undo" aria-hidden="true">  Previous page</i>
+<% end %>
 <%= javascript_include_tag 'calendar' %>

@@ -8,8 +8,14 @@ gem 'sqlite3'
 gem 'devise'
 gem 'cancan'
 gem 'faker'
-gem "paperclip", :git => "https://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
 gem 'aws-sdk', '~> 2'
+#gem 'tlsmail'
+gem 'mail'
+gem 'font-awesome-sass'
+gem "node"
+gem 'bootstrap-sass'
+gem 'will_paginate', '~> 3.1.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

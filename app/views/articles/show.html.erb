@@ -1,47 +1,33 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
-<% if @article.avatar? %>
-<p>
-  <%= image_tag @article.avatar.url %>
-</p>
-<% end %>
+<article>
+<h2 class = 'post-title'>
+  <%= @article.title %>
+</h2>
+  <p>
+    <%= @article.text %>
+  </p>
+  <% if @article.avatar? %>
+      <p><%= image_tag @article.avatar.url %></p>
+  <% end %>
+  <hr>
+</article>
 <% if can? :read, Coment %>
-
-<div class = 'coment'>
-<h2>Comments</h2>
-<% @article.coments.each do |comment| %>
-
-    <p>
-      <%= comment.text %>
-    </p>
-      <% if can? :update , Coment %>
-          <p> <%= link_to 'Edit',edit_article_coment_path(@article,comment) %> </p>
+    <div class = 'coment'>
+      <% @article.coments.each do |comment| %>
+          <p><%= comment.text %></p>
+          <p class="post-by">Comment by <%= comment.user.user_name %></p>
+          <% if can? :update , Coment %>
+              <%= link_to 'Edit',edit_article_coment_path(@article,comment) %>
           <%  end  %>
-      <% if can? :destroy , Coment%>
-          <p> <%= link_to 'Delete', article_coment_path(@article,comment),method: :delete,data:{confirm:'Are you sure ?'} %> </p>
+          <% if can? :destroy , Coment%>
+              <%= link_to 'Delete', article_coment_path(@article,comment),method: :delete,data:{confirm:'Are you sure ?'} %>
+          <% end %>
+          <hr>
       <% end %>
+    </div>
 <% end %>
-
-
-
-  </div>
-      <% end %>
-
 <% if can? :create, Coment %>
     <%= render 'coments/form_coment' %>
-
-    <% end %>
-
-
-<br>
-<% if can? :update , Article %>
-<%= link_to 'Edit',edit_article_path(@article) %>
-    <% end %>
-<%= link_to 'Back', articles_path %>
+<% end %>
+<br><%= link_to articles_path do %>
+    <i class="fa fa-undo" aria-hidden="true">  Previous page</i>
+<% end %>

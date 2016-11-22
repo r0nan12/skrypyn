@@ -9,9 +9,9 @@ class ComentsController < ApplicationController
     if @coment.save
       flash[:notice] = 'Comment was added success'
       redirect_to article_path(@article)
-      else
-        flash[:alert] = @coment.errors.full_messages
-        redirect_to article_path(@article)
+    else
+      flash[:alert] = @coment.errors.full_messages
+      redirect_to article_path(@article)
     end
   end
 
@@ -21,8 +21,8 @@ class ComentsController < ApplicationController
   def update
     if @coment.update(update_params)
       redirect_to article_path(@article)
-      else
-        render 'edit'
+    else
+      render 'edit'
     end
   end
 
