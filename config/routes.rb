@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {registrations: 'registrations'}
   get 'articles/search', to: 'articles#search'
-   resources :articles do
-
-     resources :coments
-
-   end
-
-   root 'articles#index'
+  resources :articles do
+    resources :coments
+    end
+  get '/auth/:provider/callback', to: 'auth#create'
+  root 'articles#index'
 end

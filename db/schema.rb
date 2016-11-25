@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117123859) do
+ActiveRecord::Schema.define(version: 20161124181522) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20161117123859) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "auths", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_auths_on_user_id"
   end
 
   create_table "coments", force: :cascade do |t|
@@ -45,7 +54,6 @@ ActiveRecord::Schema.define(version: 20161117123859) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "user_name",              default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.integer  "role_id"
     t.string   "reset_password_token"
@@ -65,7 +73,6 @@ ActiveRecord::Schema.define(version: 20161117123859) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
-    t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
 end

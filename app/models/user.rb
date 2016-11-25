@@ -1,13 +1,20 @@
 class User < ApplicationRecord
+  has_many :auths
   belongs_to :role
   has_many :articles
   has_many :coments, through: :articles
-  validates :user_name, uniqueness: true
   after_create :addrole
 
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def auth_create(omniauth)
+    self.email = omniauth['info']['email'] if email.blank?
+    self.password = Devise.friendly_token[0,20]
+    auths.build(provider: omniauth['provider'], uid: omniauth['uid'])
+    self.skip_confirmation!
+  end
 
   def admin?
     role ==  Role.find_by_name('admin')
@@ -15,6 +22,10 @@ class User < ApplicationRecord
 
   def author?
     role ==  Role.find_by_name('author')
+  end
+
+  def password_required?
+    (auths.empty? || !email.blank?)
   end
 
   private

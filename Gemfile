@@ -16,6 +16,9 @@ gem 'font-awesome-sass'
 gem "node"
 gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.1.1'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
