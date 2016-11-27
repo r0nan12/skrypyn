@@ -8,13 +8,13 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  
   def auth_create(omniauth)
     self.email = omniauth['info']['email'] if email.blank?
     self.password = Devise.friendly_token[0,20]
     auths.build(provider: omniauth['provider'], uid: omniauth['uid'])
-    self.skip_confirmation!
   end
+
 
   def admin?
     role ==  Role.find_by_name('admin')

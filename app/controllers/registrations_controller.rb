@@ -1,7 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    super
-    session[:omniauth] = nil unless @user.new_record?
+    resource = User.find_by(email: sign_up_params[:email])
+    if resource && session[:omniauth]
+      auth = Auth.create!(provider: session[:omniauth]['provider'], uid: session[:omniauth]['uid'], user_id: resource.id)
+      sign_in(resource)
+      respond_with resource, location: after_sign_up_path_for(resource)
+    else
+      super
+    end
   end
 
   protected
