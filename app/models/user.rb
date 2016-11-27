@@ -15,6 +15,18 @@ class User < ApplicationRecord
     auths.build(provider: omniauth['provider'], uid: omniauth['uid'])
   end
 
+  def self.user_create(omniauth)
+    user = where(email: omniauth.info.email).first
+    if user
+      user.auths.create(provider: omniauth.provider, uid: omniauth.uid)
+    else
+      user = new
+      user.auth_create(omniauth)
+      user.save
+    end
+    user
+  end
+
   def admin?
     role ==  Role.find_by_name('admin')
   end
