@@ -15,7 +15,6 @@ class User < ApplicationRecord
     auths.build(provider: omniauth['provider'], uid: omniauth['uid'])
   end
 
-
   def admin?
     role ==  Role.find_by_name('admin')
   end
