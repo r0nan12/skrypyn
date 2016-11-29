@@ -14,7 +14,9 @@
     <div class = 'coment'>
       <% @article.coments.each do |comment| %>
           <p><%= comment.text %></p>
-          <p class="post-by">Comment by <%= comment.user.user_name %></p>
+          <% unless comment.user.nil? %>
+              <p class="post-by">Comment by <%= comment.user.email%></p>
+          <% end %>
           <% if can? :update , Coment %>
               <%= link_to 'Edit',edit_article_coment_path(@article,comment) %>
           <%  end  %>
@@ -26,7 +28,7 @@
     </div>
 <% end %>
 <% if can? :create, Coment %>
-    <%= render 'coments/form_coment' %>
+    <%= render 'coments/form_comment' %>
 <% end %>
 <br><%= link_to articles_path do %>
     <i class="fa fa-undo" aria-hidden="true">  Previous page</i>

@@ -13,9 +13,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      flash[:alert] = 'Article successfully created'
+      flash[:success] = 'Article successfully created'
       redirect_to @article
     else
+      flash[:error] = @article.errors.full_messages.to_sentence
       render 'new'
     end
   end
@@ -24,15 +25,18 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(update_params)
+    if @article.update(article_params)
+      flash[:success] = 'Article successfully updated'
       redirect_to @article
     else
+      flash[:error] = @article.errors.full_messages
       render 'edit'
     end
   end
 
   def destroy
     @article.destroy
+    flash[:success] = 'Article successfully destroyed'
     redirect_to articles_path
   end
 
@@ -46,12 +50,8 @@ class ArticlesController < ApplicationController
 
   private
 
-  def update_params
-    # merge_params = params[:id] ? {user: current_user} : {}
-    params.require(:article).permit(:title, :text, :avatar, :avatar, :avatar_remote_url, :delete_avatar, :create_date)
-  end
-
   def article_params
-    params.require(:article).permit(:title, :text, :avatar, :avatar_remote_url, :create_date).merge(user: current_user)
+    merge_params = params[:id] ? {} : {user: current_user}
+    params.require(:article).permit(:title, :text, :avatar, :avatar_remote_url, :delete_avatar, :create_date).merge(merge_params)
   end
 end

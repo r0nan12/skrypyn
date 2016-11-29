@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :auths
+  has_many :auths, dependent: :destroy
   belongs_to :role
   has_many :articles
   has_many :coments, through: :articles

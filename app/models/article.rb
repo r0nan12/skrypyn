@@ -8,7 +8,7 @@ class Article < ApplicationRecord
   validates :text, presence: true,
                    length: { minimum: 5 }
   belongs_to :user
-  has_many :coments
+  has_many :coments, dependent: :destroy
 
   def avatar_remote_url=(url_value)
     if url_value.present?

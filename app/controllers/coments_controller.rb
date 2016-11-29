@@ -7,10 +7,10 @@ class ComentsController < ApplicationController
   def create
     @coment = Coment.new(comment_params)
     if @coment.save
-      flash[:notice] = 'Comment was added success'
+      flash[:success] = 'Comment added successfully'
       redirect_to article_path(@article)
     else
-      flash[:alert] = @coment.errors.full_messages
+      flash[:error] = @coment.errors.full_messages
       redirect_to article_path(@article)
     end
   end
@@ -19,9 +19,11 @@ class ComentsController < ApplicationController
   end
 
   def update
-    if @coment.update(update_params)
+    if @coment.update(comment_params)
+      flash[:success] = 'Comment updated successfully'
       redirect_to article_path(@article)
     else
+      flash[:error] = @coment.errors.full_messages
       render 'edit'
     end
   end
@@ -33,11 +35,8 @@ class ComentsController < ApplicationController
 
   private
 
-  def update_params
-    params.require(:coment).permit(:text).merge(article: @article)
-  end
-
   def comment_params
-    params.require(:coment).permit(:text).merge(user: current_user, article: @article)
+    merge_params = params[:id] ?  {article: @article } : { user: current_user, article: @article }
+    params.require(:coment).permit(:text).merge(merge_params)
   end
 end

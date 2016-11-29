@@ -7,15 +7,23 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= yield :head %>
 </head>
 
 <body>
-<%= render 'shared/flash' %>
-<%= render 'shared/main_page_header' %>
-<div class = "main_container">
-  <%= yield %>
+<div class = 'container-fluid'>
+  <div class='row-fluid'>
+    <%= render 'shared/header' %>
+  </div>
+  <div class = 'row-fluid'>
+    <div class = "main_container">
+      <%= yield %>
+    </div>
+  </div>
+  <div class='row-fluid'>
+    <%= render 'shared/footer' %>
+  </div>
 </div>
-<%= render 'shared/footer' %>
 </body>
 
 </html>

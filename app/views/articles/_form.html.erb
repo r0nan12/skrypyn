@@ -1,28 +1,36 @@
 <%= form_for @article do |f| %>
-    <% if @article.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@article.errors.count, 'error') %> prohibited this article from being saved:</h2>
-          <ul>
-            <% @article.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
+    <div class = 'form-group'>
+      <label for = 'article_title'>Title</label>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class = 'form-group'>
+      <label for = 'article_text'>Text</label>
+      <%= f.text_area :text, class: 'form-control' %>
+    </div>
+    <% if @article.avatar? %>
+        <p><%= image_tag @article.avatar.url %></p>
+    <% end %>
+    <p><%= f.file_field :avatar %></p>
+    <div class = 'form-group'>
+      <%= f.text_field :avatar_remote_url, class: 'form-control', placeholder: 'image URL' %>
+    </div>
+    <% if controller_name =='articles' && action_name == 'edit' %>
+        <div class = 'checkbox'>
+          <label>
+            <%= f.check_box :delete_avatar, {}, checked_value = 'yes', unchecked_value = 'no' %>Delete avatar
+          </label>
         </div>
     <% end %>
-    <p>
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.label :content %>
-      <%= f.text_area :text %>
-    </p>
-    <p><%= f.file_field :avatar %></p>
-    <p>or URL</p>
-    <p><%= f.text_field :avatar_remote_url %></p>
-    <p>
-      <%= f.label :Date %>
-      <br><div id = 'create_date'> <%= f.text_field  :create_date %></div>
-    </p>
-    <p><%= f.submit %></p> 
+    <div class = 'form-group'>
+      <label for = 'article_create_date'>Date</label>
+      <div id = 'create_date'>
+        <%= f.text_field  :create_date, class: 'form-control' %>
+      </div>
+    </div>
+    <div class = 'form-group'>
+      <%= f.submit 'Create article', class: 'btn btn-primary' %> 
+    </div>
+<% end %>
+<%= link_to articles_path do %>
+    <i class="fa fa-undo" aria-hidden="true"> Previous page</i>
 <% end %>

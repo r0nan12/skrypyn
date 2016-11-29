@@ -1,25 +1,33 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class = 'form-group'>
+    <label for = 'user_email'>Email address</label>
+    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class = 'form-group'>
+    <label for = 'user_password'>Password</label>
+    <%= f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Password' %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class = 'checkbox'>
+      <label>
+        <%= f.check_box :remember_me %>Remember me
+      </label>
     </div>
-  <% end -%>
+  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class = 'form-group' id = 'omniauth'>
+    <%= f.submit "Log in", class: 'btn btn-primary' %>
+      <a href="/auth/facebook">
+        <%= image_tag "/facebook.png", size: "40x40", alt: "Facebook" %>
+      </a>
+      <a href="/auth/twitter">
+        <%= image_tag "/twitter.png", size: "40x40", alt: "Twitter" %>
+      </a>
+      <a href="/auth/google_oauth2">
+        <%= image_tag "/google.png", size: "40x40", alt: "Google" %>
+      </a>
   </div>
 <% end %>
 

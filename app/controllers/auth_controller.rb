@@ -23,7 +23,7 @@ class AuthController < ApplicationController
 
   def flash_and_sign_redirect(resource, arg)
     arg.skip_confirmation!
-    flash['notice'] = 'Successfully signed in'
+    flash['success'] = 'Successfully signed in'
     sign_in_and_redirect(resource, arg)
   end
 end

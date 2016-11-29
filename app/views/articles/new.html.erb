@@ -1,8 +1,7 @@
-<h1>New Article</h1>
-<%= render 'form' %>
-
-<br><%= link_to articles_path do %>
-    <i class="fa fa-undo" aria-hidden="true">  Previous page</i>
+<% content_for :head do %>
+    <%= javascript_include_tag 'calendar' %>
 <% end %>
 
-<%= javascript_include_tag 'calendar' %>
+<p><h3><span class = "bg-info">New article</span></h3></p>
+<%= render 'form' %>
+
