@@ -5,11 +5,14 @@ class AuthController < ApplicationController
     auth = Auth.find_by(provider: omniauth['provider'], uid: omniauth['uid'])
     if auth.nil?
       user = User.user_create(omniauth)
-      if user.valid?
+      unless user.email.blank?
         flash_and_sign_redirect(:user, user)
       else
         redirect_to new_user_registration_path
       end
+    elsif !auth.user.confirmed?
+      flash[:error] = 'Confirm your email'
+      redirect_to root_path
     else
       flash_and_sign_redirect(:user, auth.user)
     end

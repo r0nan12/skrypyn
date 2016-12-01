@@ -7,6 +7,7 @@ class Article < ApplicationRecord
                     length: { minimum: 5, maximum: 255 }
   validates :text, presence: true,
                    length: { minimum: 5 }
+  validates :create_date, presence: true
   belongs_to :user
   has_many :coments, dependent: :destroy
 

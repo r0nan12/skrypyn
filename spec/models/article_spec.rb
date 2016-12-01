@@ -1,21 +1,17 @@
 require 'spec_helper'
 
 describe Article do
+  let(:article) { create(:article) }
+  let(:comments) { create_list(:coment, 2, article: article) }
+  let(:articles) { create_list(:article, 5, title: 'test_title') }
+
   it 'calculate total coments for each articles' do
-    coment1 = create(:coment)
-    coment2 = create(:coment)
-    article = create(:article)
-    article.coments << coment1
-    article.coments << coment2
     article.calculate_coments
     expect(article.total_coments).to eq(2)
   end
 
   it 'search' do
-    5.times do
-      article = create(:article, title: 'test_title')
-    end
-    articles = Article.search('test_title')
+    articles = Article.search(articles.first.title)
     expect(articles.size).to eq(5)
   end
 end
