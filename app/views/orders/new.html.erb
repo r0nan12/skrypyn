@@ -1,0 +1,19 @@
+<div>
+  <h1>Details: </h1>
+  <p><strong>Title:</strong> <%= @article.title %></p>
+  <p><strong>Price:</strong> <%= @article.price %> $</p>
+</div>
+
+<div>
+  <%= form_for [ @article, @article.orders.build ] do |f| %>
+      <%= f.hidden_field(:amount, value: @article.price) %>
+      <div class="form-group">
+        PayPal<%= f.radio_button('service','paypal') %>
+      </div>
+      <div class="form-group">
+        Stripe<%= f.radio_button('service', 'stripe') %>
+      </div>
+      <%= f.submit 'Pay', class: 'btn btn-success' %>
+      <%= link_to 'Cancel', root_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

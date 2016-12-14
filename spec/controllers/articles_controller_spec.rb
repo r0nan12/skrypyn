@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'support/controller_macros'
 
 describe ArticlesController do
-  login_user('author')
+  login_user('admin')
   let(:article) { create(:article) }
 
   describe 'show action' do
@@ -16,9 +16,9 @@ describe ArticlesController do
       expect(response.status).to eq(404)
     end
 
-    describe 'create acrion' do
+    describe 'create action' do
       it 'redirect to articles' do
-        process :create, method: :post, params: { article: { title: Faker::Lorem.sentence(3, false, 4), text: Faker::Lorem.sentence(3, false, 4), create_date: Faker::Date.backward(days=100) } }
+        process :create, method: :post, params: { article: attributes_for(:article) }
         expect(response).to redirect_to(assigns(:article))
       end
     end

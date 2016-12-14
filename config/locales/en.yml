@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  forms:
+    articles:
+      add_new_article: Add new article

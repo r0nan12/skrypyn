@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   load_and_authorize_resource except: :create
+  skip_authorize_resource only: :search
   def index
     @articles = Article.paginate(page: params[:page], per_page: 2)
   end
@@ -16,7 +17,7 @@ class ArticlesController < ApplicationController
       flash[:success] = 'Article successfully created'
       redirect_to @article
     else
-      flash[:error] = @article.errors.full_messages.to_sentence
+      flash[:danger] = @article.errors.full_messages.to_sentence
       render 'new'
     end
   end
@@ -29,7 +30,7 @@ class ArticlesController < ApplicationController
       flash[:success] = 'Article successfully updated'
       redirect_to @article
     else
-      flash[:error] = @article.errors.full_messages
+      flash[:danger] = @article.errors.full_messages
       render 'edit'
     end
   end
@@ -52,6 +53,6 @@ class ArticlesController < ApplicationController
 
   def article_params
     merge_params = params[:id] ? {} : {user: current_user}
-    params.require(:article).permit(:title, :text, :avatar, :avatar_remote_url, :delete_avatar, :create_date).merge(merge_params)
+    params.require(:article).permit(:title, :text, :avatar, :avatar_remote_url, :delete_avatar, :create_date, :price).merge(merge_params)
   end
 end

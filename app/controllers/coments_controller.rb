@@ -10,7 +10,7 @@ class ComentsController < ApplicationController
       flash[:success] = 'Comment added successfully'
       redirect_to article_path(@article)
     else
-      flash[:error] = @coment.errors.full_messages
+      flash[:danger] = @coment.errors.full_messages
       redirect_to article_path(@article)
     end
   end
@@ -23,7 +23,7 @@ class ComentsController < ApplicationController
       flash[:success] = 'Comment updated successfully'
       redirect_to article_path(@article)
     else
-      flash[:error] = @coment.errors.full_messages
+      flash[:danger] = @coment.errors.full_messages
       render 'edit'
     end
   end

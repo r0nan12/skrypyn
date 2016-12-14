@@ -1,0 +1,12 @@
+development: &default
+  mode: sandbox
+  client_id: AaKrnxMgdH0rKZXM8ouCCIBJM7Fa7VustBwWdsosSLynDE38tHnupycbWD3Rflu0byCwKLYbdZtSOGsQ
+  client_secret: EKIVuEL3XL-c9jYpQ0q1yT1BBmcWvaDNISp_K6GfPJEuWVRcIk7eW-F0RX6PaOHC_w8cfXh0ZyzZWXoG
+
+
+test:
+  <<: *default
+production:
+  mode: live
+  client_id: CLIENT_ID
+  client_secret: CLIENT_SECRET

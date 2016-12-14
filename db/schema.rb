@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124181522) do
+ActiveRecord::Schema.define(version: 20161211204523) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "user_id"
     t.integer  "total_coments"
     t.date     "create_date"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20161124181522) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.decimal  "price",               precision: 8, scale: 2
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -44,6 +45,19 @@ ActiveRecord::Schema.define(version: 20161124181522) do
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_coments_on_article_id"
     t.index ["user_id"], name: "index_coments_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "payment_id"
+    t.decimal  "amount"
+    t.string   "state"
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "service"
+    t.index ["article_id"], name: "index_orders_on_article_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|

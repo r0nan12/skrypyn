@@ -1,20 +1,26 @@
 class AuthController < ApplicationController
   def create
     omniauth = request.env['omniauth.auth']
-    session['omniauth'] = omniauth.except('extra')
     auth = Auth.find_by(provider: omniauth['provider'], uid: omniauth['uid'])
     if auth.nil?
-      user = User.user_create(omniauth)
-      unless user.email.blank?
-        flash_and_sign_redirect(:user, user)
+      if omniauth.info.email.blank?
+        session[:omniauth] = omniauth.except('extra')
+        redirect_to auth_new_email_path
       else
-        redirect_to new_user_registration_path
+        flash['success'] = 'Successfully signed in'
+        create_user(:user, omniauth)
       end
-    elsif !auth.user.confirmed?
-      flash[:error] = 'Confirm your email'
-      redirect_to root_path
     else
-      flash_and_sign_redirect(:user, auth.user)
+      flash['success'] = 'Successfully signed in' if auth.user.confirmed?
+      sign_in_and_redirect(:user, auth.user)
+    end
+  end
+
+  def new_email
+    @email = params[:email]
+    if @email && session[:omniauth]
+      session[:omniauth]['info']['email'] = @email
+      create_user(:user, session[:omniauth])
     end
   end
 
@@ -24,9 +30,9 @@ class AuthController < ApplicationController
 
   private
 
-  def flash_and_sign_redirect(resource, arg)
-    arg.skip_confirmation!
-    flash['success'] = 'Successfully signed in'
-    sign_in_and_redirect(resource, arg)
+  def create_user(resource, auth)
+    user = User.user_create(auth)
+    user.skip_confirmation! unless session[:omniauth]
+    sign_in_and_redirect(resource, user)
   end
 end

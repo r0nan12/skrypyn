@@ -1,29 +1,30 @@
-<div class="row">
-  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    <% if can? :read, Article %>
-        <% @articles.each { |f| %>
-            <div class="post-preview">
-              <h2 class = 'post-title'>
-                <%= link_to "#{f.title}",article_path(f) %>
-              </h2>
-              <h3 class="post-subtitle">
-                <%= f.text %>
-              </h3>
-              <% unless f.user.nil? %>
-                  <p class="post-meta">Posted by <strong><%= f.user.email %></strong> on <strong><%= f.create_date %></strong></p>
-              <% end %>
-              <p class="post-meta"><%= f.calculate_coments %> comments</p>
-              <p>
-                <% if can? :destroy , Article %>
-                    <span class="post-meta"><%= link_to 'Delete',article_path(f),method: :delete,data:{confirm:'Are you sure ?'} %></span>
-                <% end %>
-                <% if can? :update , Article %>
-                    <span class="post-meta"><%= link_to 'Edit',edit_article_path(f) %></span>
-                <% end %>
-              </p>
-            </div>
-        <% } %>
-    <% end %>
+<div class= 'row'>
+  <div class = 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'>
+    <% @articles.each { |f| %>
+        <div class='post-preview'>
+          <h2 class = 'post-title'>
+            <%= link_to "#{f.title}", article_path(f) %>
+          </h2>
+          <h3 class = 'post-subtitle'>
+            <%= f.text %>
+          </h3>
+          <% unless f.user.nil? %>
+              <p class = 'post-meta'>Posted by <strong><%= f.user.email %></strong> on <strong><%= f.create_date %></strong></p>
+          <% end %>
+          <p class = 'post-meta'><%= f.coments.length %> comments</p>
+          <p id = 'manage_button'>
+            <% if can? :destroy , Article %>
+                <span class = 'post-meta'><%= link_to 'Delete', article_path(f),method: :delete,data:{confirm:'Are you sure ?'} %></span>
+            <% end %>
+            <% if can? :update , Article %>
+                <span class = 'post-meta'><%= link_to 'Edit', edit_article_path(f) %></span>
+            <% end %>
+            <%  if can? :create, Order %>
+                <span class = 'post-meta'><%= link_to 'Subscribe', new_article_order_path(f) %></span>
+            <% end %>
+          </p>
+        </div>
+    <% } %>
   </div>
-  <span class="paginate"><%= will_paginate @articles %></span>
+  <span class = 'paginate'><%= will_paginate @articles %></span>
 </div>

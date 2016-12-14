@@ -1,10 +1,13 @@
+$calendar-color: lightgrey;
+
+.error{
+  border-style: solid;
+  border-color: red;
+}
 
 form{
   width: 300px;
   font-size: medium;
-}
-#omniauth img{
-  cursor: pointer;
 }
 
 .post-by{
@@ -12,12 +15,12 @@ form{
 }
 
 .container-fluid{
-  padding: 0px;
+  padding: 0;
 }
 
 .main_container{
   position: relative;
-  margin: 0px;
+  margin: 0;
   padding: 15px;
 }
 
@@ -26,7 +29,7 @@ article .post-title{
 }
 
 .post-subtitle{
-  font-family: "Open Sans";
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 300;
   max-height: 55px;
@@ -37,28 +40,28 @@ article .post-title{
   left:-50px;
   margin-top: 10px;
   position: absolute;
-}
-.search input{
-  font-size: large;
-  width: 250px;
+
+  input{
+    font-size: large;
+    width: 250px;
+  }
 }
 
 .user_info{
   position: absolute;
-  right: 0px;
+  right: 0;
   color: white;
-}
-.user_info i{
-  color: white;
+  i{
+    color: white;
+  }
+  span{
+    position: relative;
+    right: -30px;
+  }
 }
 
 .bg-info{
-  font-family: Georgia ;
-}
-
-.user_info span{
-  position: relative;
-  right: -30px;
+  font-family: Georgia, sans-serif;
 }
 
 .search_result{
@@ -68,15 +71,13 @@ article .post-title{
   position: absolute;
   width: 100% ;
   background-color: snow;
-}
-
-.search_result div :hover{
-  background-color: lightgrey;
-}
-
-.search_result a {
-  text-decoration: none;
-  color : black;
+  div :hover{
+    background-color: lightgrey;
+  }
+  a {
+    text-decoration: none;
+    color : black;
+  }
 }
 
 .calendar{
@@ -88,39 +89,33 @@ article .post-title{
   height: auto;
   bottom: 70px;
   left:350px;
-}
-
-.calendar div{
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
-  background-color: lightgrey;
+  div{
+    text-align: center;
+    border: 1px solid grey;
+    background-color: $calendar-color;
+  }
+  table{
+    font-size: smaller;
+    width: 100%;
+    text-align: center;
+    border: 2px inset $calendar-color;
+    border-collapse: collapse;
+    tr :hover{
+      background-color: $calendar-color;
+    }
+    tr{
+      td{
+        border-style: inset ;
+      }
+      th{
+        border-style: inset ;
+      }
+    }
+  }
 }
 
 #month_select{
   width: 130px;
-}
-
-.calendar table{
-  font-size: smaller;
-  width: 100%;
-  text-align: center;
-  border-style: inset;
-  border-color: lightgrey;
-  border-width: 2px;
-  border-collapse: collapse;
-}
-
-.calendar table tr td{
-  border-style: inset ;
-}
-.calendar table tr th{
-  border-style: inset ;
-}
-
-.calendar table  tr :hover{
-  background-color: lightgrey ;
 }
 
 #month_dec, #month_inc{

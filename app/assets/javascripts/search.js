@@ -1,4 +1,4 @@
-$(document).on("ready", function () {
+$(document).on('turbolinks:load', function () {
     $('body').click(function () {
         $('.search_result').css('display', 'none');
     });
