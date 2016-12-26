@@ -1,5 +1,37 @@
 uk:
-  hello: "Hello world"
-  forms:
     articles:
-      add_new_article: Додати статтю
+      new:
+        text: 'Текст'
+        title: 'Заголовок'
+        price: 'Ціна'
+        date: 'Дата'
+      add_new_article: 'Додати статтю'
+      search_article: 'Пошук'
+      posted_by: 'Розміщено'
+      date: ' '
+    links:
+      cancel: 'Відмінити'
+      delete_avatar: 'Видалити зображення'
+      edit: 'Редагувати'
+      delete: 'Видалити'
+      previous_page: 'Попередня сторінка'
+    comments:
+      comments: 'Коментарів'
+      add_comment: 'Додати коментар'
+    orders:
+      details: 'Деталі'
+      service: 'Ви оплачуєте через сервіс'
+      title: 'Опис'
+      price: 'Вартість'
+    devise:
+      email: 'Електронна пошта'
+      password: 'Пароль'
+      remember_me: "запам'ятати мене"
+      log_in: 'Вхід'
+      signup: 'Реєстрація'
+      forgot: 'Забули свій пароль?'
+      not_received_conf: 'Не отримали інструкцію для підтвердження?'
+      not_received_unlock_inc: 'Не отримали інструкцію для розблокування? '
+      sign_in_with: 'Ввійти з допомогою '
+      characters_minimum: 'символів мінімум'
+      confirm_password: 'Підтвердити пароль'

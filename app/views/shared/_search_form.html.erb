@@ -1,9 +1,7 @@
-<div class = "search">
-  <%= form_tag(articles_search_path, method: 'get', class: 'search_form', remote: 'true', AUTOCOMPLETE: 'off' ) do %>
-      <div class = 'input-group'>
-        <%= text_field_tag :q, '', class: 'form-control', placeholder: '  Search' %> <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+<%= form_tag(articles_search_path, method: 'get', class: 'search_form navbar-form navbar-left', remote: 'true', AUTOCOMPLETE: 'off' ) do %>
+    <div id = 'search' class = 'input-group'>
+      <%= text_field_tag :q, '', class: 'form-control', placeholder: t('articles.search_article') %> <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+      <div class = "search_result">
       </div>
-  <% end %>
-  <div class = "search_result">
-  </div>
-</div>
+    </div>
+<% end %>

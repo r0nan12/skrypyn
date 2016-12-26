@@ -28,6 +28,14 @@ class Article < ApplicationRecord
     update(avatar: nil) if checked_value == 'yes'
   end
 
+  def unsubscribed?(user)
+    role = Role.find_by_name('admin')
+    return false if user.role == role
+    user.orders.each do |order|
+      break if (order.article_id == id && order.approved?) || user_id == user.id
+    end
+  end
+
   def self.search(param)
     query = "%#{param}%"
     where('lower(title) LIKE ?', query)

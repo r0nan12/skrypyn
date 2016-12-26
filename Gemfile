@@ -4,9 +4,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'sqlite3'
 gem 'devise'
 gem 'cancan'
+
 gem 'faker'
 gem 'paperclip'
 gem 'aws-sdk'
@@ -15,15 +16,30 @@ gem 'font-awesome-sass'
 gem 'node'
 gem 'bootstrap-sass'
 gem 'will_paginate'
+
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+
+gem 'stripe'
+gem 'liqpay'
 gem 'paypal-sdk-rest'
+
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
+gem 'figaro'
+
 gem 'jquery-turbolinks'
 gem 'turbolinks'
 gem 'rails-i18n'
 gem 'devise-i18n'
-gem 'stripe'
+
+gem 'aasm'
+gem 'whenever'
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
+
 # Use Puma as the app server
 gem 'puma'
 gem 'validates_timeliness'

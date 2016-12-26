@@ -1,0 +1,6 @@
+<div id = 'new_order_form'>
+  <%= form_for [f, f.orders.build], url: orders_create_order_article_path(f) do |order| %>
+      <%= order.hidden_field(:amount, value: f.price)%>
+      <%= order.select(:service, [ [], ['paypal', 'paypal'], ['stripe', 'stripe'], ['liqpay', 'liqpay'] ]) %>
+  <% end %>
+</div>

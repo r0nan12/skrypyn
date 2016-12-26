@@ -1,19 +1,18 @@
 <div>
-  <h1>Details: </h1>
-  <p><strong>Title:</strong> <%= @article.title %></p>
-  <p><strong>Price:</strong> <%= @article.price %> $</p>
+  <h1><%= t('orders.details') %>: </h1>
+  <p><%= t('orders.service') %>: <strong><%= @order.service %></strong></p>
+  <p><strong><%= t('orders.title') %>:</strong> <%= @article.title %></p>
+  <p><strong><%= t('orders.price') %>:</strong> <%= @article.price %> $</p>
 </div>
 
 <div>
-  <%= form_for [ @article, @article.orders.build ] do |f| %>
-      <%= f.hidden_field(:amount, value: @article.price) %>
-      <div class="form-group">
-        PayPal<%= f.radio_button('service','paypal') %>
-      </div>
-      <div class="form-group">
-        Stripe<%= f.radio_button('service', 'stripe') %>
-      </div>
-      <%= f.submit 'Pay', class: 'btn btn-success' %>
-      <%= link_to 'Cancel', root_path, class: "btn btn-primary" %>
+  <% case @order.service %>
+  <% when 'liqpay' %>
+      <p><%=liqpay_button @liqpay_request, title: "Pay now" %></p>
+  <% when 'stripe' %>
+      <p><%= render 'shared/stripe_form' %></p>
+  <% when 'paypal' %>
+      <p><%= render 'shared/paypal_form' %></p>
   <% end %>
+  <p><%= link_to t('links.cancel'), root_path, class: "btn btn-primary" %></p>
 </div>

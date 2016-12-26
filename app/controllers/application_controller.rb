@@ -5,22 +5,31 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from ::SocketError do |error|
-    flash[:danger] = error.message
-    redirect_to :back
+    flash[:error] = error.message
+    redirect_back(fallback_location: root_path)
   end
 
   rescue_from ::TypeError do |error|
-    flash[:danger] = 'Wrong data'
-    redirect_to :back
+    flash[:error] = 'Wrong data'
+    redirect_back(fallback_location: root_path)
+  end
+
+  rescue_from Liqpay::InvalidResponse do |error|
+    flash[:error] = error.message
+    redirect_to liqpays_new_order_path
   end
 
   rescue_from CanCan::AccessDenied do
-    flash[:danger] = 'Access denied'
-    redirect_to :back
+    flash[:error] = 'Access denied'
+    redirect_back(fallback_location: root_path)
   end
 
   rescue_from ActiveRecord::RecordNotFound do
     render(file: :'/public/404.html', status: 404)
+  end
+
+  rescue_from AASM::InvalidTransition do
+    flash[:error] = 'Payment failure'
   end
 
   rescue_from Stripe::CardError do |error|

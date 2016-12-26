@@ -16,13 +16,13 @@
       <% @article.coments.each do |comment| %>
           <p><%= comment.text %></p>
           <% unless comment.user.nil? %>
-              <p class="post-by">Comment by <%= comment.user.email%></p>
+              <p class="post-by"><%=  t('articles.posted_by') %> <%= comment.user.email%></p>
           <% end %>
           <% if can? :update , Coment %>
-              <%= link_to 'Edit',edit_article_coment_path(@article,comment) %>
+              <%= link_to  t('links.edit'), edit_article_coment_path(@article,comment) %>
           <%  end  %>
           <% if can? :destroy , Coment%>
-              <%= link_to 'Delete', article_coment_path(@article,comment),method: :delete,data:{confirm:'Are you sure ?'} %>
+              <%= link_to  t('links.delete'), article_coment_path(@article,comment),method: :delete,data:{confirm:'Are you sure ?'} %>
           <% end %>
           <hr>
       <% end %>
@@ -32,6 +32,6 @@
     <%= render 'coments/form_comment' %>
 <% end %>
 <br><%= link_to articles_path do %>
-    <i class="fa fa-undo" aria-hidden="true">  Previous page</i>
+    <i class="fa fa-undo" aria-hidden="true">  <%= t('links.previous_page') %></i>
 <% end %>
 <% end %>

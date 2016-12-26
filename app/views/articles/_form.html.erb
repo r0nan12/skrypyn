@@ -1,10 +1,10 @@
 <%= form_for @article do |f| %>
     <div class = 'form-group'>
-      <label for = 'article_title'>Title</label>
+      <label for = 'article_title'><%= t('articles.new.title') %></label>
       <%= f.text_field :title, class: 'form-control' %>
     </div>
     <div class = 'form-group'>
-      <label for = 'article_text'>Text</label>
+      <label for = 'article_text'><%= t('articles.new.text') %></label>
       <%= f.text_area :text, class: 'form-control' %>
     </div>
     <% if @article.avatar? %>
@@ -12,7 +12,7 @@
         <% if controller_name =='articles' && action_name == 'edit' %>
             <div class = 'checkbox'>
               <label>
-                <%= f.check_box :delete_avatar, {}, checked_value = 'yes', unchecked_value = 'no' %>Delete avatar
+                <%= f.check_box :delete_avatar, {}, checked_value = 'yes', unchecked_value = 'no' %><%= t('links.delete_avatar') %>
               </label>
             </div>
         <% end %>
@@ -22,21 +22,21 @@
       <%= f.text_field :avatar_remote_url, class: 'form-control', placeholder: 'image URL' %>
     </div>
     <div class = 'form-group'>
-      <label for = 'article_price'>Price</label>
+      <label for = 'article_price'><%= t('articles.new.price') %></label>
       <%= f.text_field :price, class: 'form-control' %>
     </div>
 
 
     <div class = 'form-group'>
-      <label for = 'article_create_date'>Date</label>
+      <label for = 'article_create_date'><%= t('articles.new.date') %></label>
       <div id = 'create_date'>
         <%= f.text_field  :create_date, class: 'form-control' %>
       </div>
     </div>
     <div class = 'form-group'>
-      <%= f.submit 'Create article', class: 'btn btn-primary' %> 
+      <%= f.submit t('articles.add_new_article'), class: 'btn btn-primary' %> 
     </div>
 <% end %>
 <%= link_to articles_path do %>
-    <i class="fa fa-undo" aria-hidden="true"> Previous page</i>
+    <i class="fa fa-undo" aria-hidden="true"> <%= t('links.previous_page') %></i>
 <% end %>

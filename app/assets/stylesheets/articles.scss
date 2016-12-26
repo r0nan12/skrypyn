@@ -1,8 +1,15 @@
 $calendar-color: lightgrey;
 
 .error{
-  border-style: solid;
-  border-color: red;
+  border: solid red;
+}
+
+#locale{
+  a{
+    color:white;
+  }
+  padding-right: 50px;
+  text-align: right;
 }
 
 form{
@@ -10,17 +17,22 @@ form{
   font-size: medium;
 }
 
+#manage_button{
+  padding-right: 10px;
+  width: auto;
+  float: left;
+}
+
+#new_order_form{
+  left: 10px;
+  bottom: 3px;
+}
+
 .post-by{
   font-family: FreeMono;
 }
 
 .container-fluid{
-  padding: 0;
-}
-
-.main_container{
-  position: relative;
-  margin: 0;
   padding: 15px;
 }
 
@@ -36,48 +48,69 @@ article .post-title{
   overflow: hidden;
 }
 
-.search {
-  left:-50px;
-  margin-top: 10px;
-  position: absolute;
+@media (min-width: 1200px){
+  .search_form {
+    width: 30%;
+  }
+}
 
-  input{
+@media (min-width: 768px) and (max-width: 1200px){
+  .search_form {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px){
+  .search_form {
+    width: 50%;
+  }
+}
+
+.search_form {
+
+  #search {
+    width: auto;
+    position: relative;
+
+    .search_result{
+      z-index: 2;
+      padding: 5px;
+      border: solid 1px whitesmoke ;
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      width: 100%;
+      background-color: snow;
+      div :hover{
+        background-color: lightgrey;
+      }
+      a {
+        text-decoration: none;
+        color : black;
+      }
+    }
+  }
+
+  input {
     font-size: large;
-    width: 250px;
+    width: auto;
   }
 }
 
 .user_info{
-  position: absolute;
-  right: 0;
-  color: white;
+  color: grey;
   i{
-    color: white;
+    color: grey;
   }
   span{
-    position: relative;
-    right: -30px;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 
 .bg-info{
   font-family: Georgia, sans-serif;
-}
-
-.search_result{
-  padding: 5px;
-  border: solid 1px whitesmoke ;
-  display: none;
-  position: absolute;
-  width: 100% ;
-  background-color: snow;
-  div :hover{
-    background-color: lightgrey;
-  }
-  a {
-    text-decoration: none;
-    color : black;
-  }
 }
 
 .calendar{
@@ -87,8 +120,14 @@ article .post-title{
   position: absolute;
   width: 280px;
   height: auto;
-  bottom: 70px;
-  left:350px;
+  z-index: 2;
+
+  #close_calendar{
+    position: absolute;
+    top:0;
+    right: 0;
+  }
+
   div{
     text-align: center;
     border: 1px solid grey;

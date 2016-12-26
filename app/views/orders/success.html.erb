@@ -1,0 +1,21 @@
+<% content_for :head do %>
+    <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+<% end %>
+<% @order = order unless @order %>
+
+<div class = 'page'>
+  <h1>Successful payment from <%= @order.user.email %></h1>
+  <p>
+    The order ID is: <%= @order.id %>.
+  </p>
+  <p>
+    Amount: <%= @order.amount %>
+  </p>
+  <h3>Thanks for visit</h3>
+  <p>
+    <%= link_to 'Read article', article_path(@order.article) %>
+  </p>
+  <p>
+    <%= link_to 'Main page', articles_path %>
+  </p>
+</div>

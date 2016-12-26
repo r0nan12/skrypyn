@@ -8,22 +8,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <% if content_for?(:head) %>
+      <%= yield(:head) %>
+  <% end %>
 </head>
 
 <body>
-<div class = 'container-fluid'>
-  <div class='row-fluid'>
-    <%= render 'shared/header' %>
-  </div>
-  <div class = 'row-fluid'>
-    <div class = "main_container">
-      <%= yield %>
-    </div>
-  </div>
-  <div class='row-fluid'>
-    <%= render 'shared/footer' %>
-  </div>
+<%= render 'shared/header' %>
+<div class = 'container-fluid main_container'>
+  <%= yield %>
 </div>
+<%= render 'shared/footer' %>
 <%= yield :custom_js %>
 </body>
 

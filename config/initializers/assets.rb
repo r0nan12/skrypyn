@@ -5,6 +5,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( calendar.js )
 Rails.application.config.assets.precompile += %w( launch_stripe.js )
 Rails.application.config.assets.precompile += %w( validates.js )
+Rails.application.config.assets.precompile += %w( submit_order.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

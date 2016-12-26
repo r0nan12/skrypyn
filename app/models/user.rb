@@ -40,13 +40,6 @@ class User < ApplicationRecord
     role == Role.find_by_name('follower')
   end
 
-
-  def subscribed?(article)
-    orders.each do |order |
-      article.id == order.article_id
-    end
-  end
-
   private
 
   def addrole

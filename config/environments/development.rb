@@ -1,17 +1,16 @@
 Rails.application.configure do
-
   config.gem 'validates_timeliness'
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-       domain:          "gmail.com",
-       address:         "smtp.gmail.com",
-       port:            "587",
+       domain:          'gmail.com',
+       address:         'smtp.gmail.com',
+       port:            '587',
        enable_starttls_auto: true,
-       authentication:   "plain",
-       user_name:         "testprojectblogg@gmail.com",
-       password:          "Rs201190"
+       authentication:   'plain',
+       user_name:         'testprojectblogg@gmail.com',
+       password:          ENV['gmail_password']
   }
   # Settings specified here will take precedence over those in config/application.rb.
 

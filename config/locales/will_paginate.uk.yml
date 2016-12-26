@@ -1,0 +1,4 @@
+uk:
+  will_paginate:
+    previous_label: "&#8592; попередня"
+    next_label: "наступна &#8594;"

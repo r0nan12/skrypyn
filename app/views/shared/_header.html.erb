@@ -1,22 +1,37 @@
-<header class="intro-header" style="background-image: url('/home-bg.jpg')">
-  <div class="container">
-    <div class="row">
-      <%= render 'shared/flash' %>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
+<header class = 'intro-header' style="background-image: url('/home-bg.jpg')">
+  <div class = 'row'>
+    <%= render 'shared/flash' %>
+  </div>
+  <nav class = 'navbar navbar-default'>
+    <div class = 'container-fluid'>
+      <div class = 'navbar-header'>
+        <button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#bs-example-navbar-collapse-1' aria-expanded = 'false'>
+          <span class = 'sr-only'>Toggle navigation</span>
+          <span class = 'icon-bar'></span>
+          <span class = 'icon-bar'></span>
+          <span class = 'icon-bar'></span>
+        </button>
+        <a class = 'navbar-brand' href = 'http://localhost:3000'>Home</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <%= render 'shared/search_form' %>
-      </div>
-      <div class="col-md-6">
-        <%= render 'shared/user_info' %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= render 'shared/user_info' %></li>
+        </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="site-heading">
+  </nav>
+  <div class = 'container-fluid'>
+    <div class = 'row'>
+      <div class = 'site-heading'>
         <h1>My Blog</h1>
         <hr class="small">
         <span class="subheading">Blog Theme by Ruby Rails</span>
       </div>
+    </div>
+    <div id = 'locale'>
+      <%= link_to 'uk', url_for( locale: 'uk' )  %>
+      <%= link_to 'en', url_for( locale: 'en' )  %>
     </div>
   </div>
 </header>

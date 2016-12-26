@@ -1,3 +1,7 @@
+<% content_for :custom_js do %>
+    <%= javascript_include_tag 'submit_order' %>
+<% end %>
+
 <div class= 'row'>
   <div class = 'col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'>
     <% @articles.each { |f| %>
@@ -9,21 +13,26 @@
             <%= f.text %>
           </h3>
           <% unless f.user.nil? %>
-              <p class = 'post-meta'>Posted by <strong><%= f.user.email %></strong> on <strong><%= f.create_date %></strong></p>
+              <p class = 'post-meta'><%= t('articles.posted_by') %> <strong><%= f.user.email %></strong> <%= t('articles.date') %> <strong><%= f.create_date %></strong></p>
           <% end %>
-          <p class = 'post-meta'><%= f.coments.length %> comments</p>
-          <p id = 'manage_button'>
+          <p class = 'post-meta'><%= t('comments.comments') %>   <%= f.coments.length %> </p>
+          <div id = 'manage_button'>
             <% if can? :destroy , Article %>
-                <span class = 'post-meta'><%= link_to 'Delete', article_path(f),method: :delete,data:{confirm:'Are you sure ?'} %></span>
+                <span class = 'post-meta'><%= link_to t('links.delete'), article_path(f),method: :delete,data:{confirm:'Are you sure ?'} %></span>
             <% end %>
             <% if can? :update , Article %>
-                <span class = 'post-meta'><%= link_to 'Edit', edit_article_path(f) %></span>
+                <span class = 'post-meta'><%= link_to t('links.edit'), edit_article_path(f) %></span>
             <% end %>
-            <%  if can? :create, Order %>
-                <span class = 'post-meta'><%= link_to 'Subscribe', new_article_order_path(f) %></span>
-            <% end %>
-          </p>
-        </div>
+
+          </div>
+          <%  if can? :create, Order %>
+              <% if f.unsubscribed? current_user %>
+                  <%= render partial: 'shared/create_order', locals: { f: f } %>
+              <% else %>
+                  <%= link_to image_tag('/book_link.jpg', width: '50', height: '20'), article_path(f) %>
+              <% end %>
+          <% end %>
+        </div><br>
     <% } %>
   </div>
   <span class = 'paginate'><%= will_paginate @articles %></span>

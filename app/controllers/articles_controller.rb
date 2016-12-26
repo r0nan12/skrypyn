@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  protect_from_forgery except: :show
   load_and_authorize_resource except: :create
   skip_authorize_resource only: :search
   def index
@@ -17,7 +18,7 @@ class ArticlesController < ApplicationController
       flash[:success] = 'Article successfully created'
       redirect_to @article
     else
-      flash[:danger] = @article.errors.full_messages.to_sentence
+      flash[:error] = @article.errors.full_messages.to_sentence
       render 'new'
     end
   end
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
       flash[:success] = 'Article successfully updated'
       redirect_to @article
     else
-      flash[:danger] = @article.errors.full_messages
+      flash[:error] = @article.errors.full_messages
       render 'edit'
     end
   end

@@ -22,7 +22,7 @@ class Ability
   def follower_ability(user)
     authors_ability(user)
     user.orders.each do |order|
-      can :read, Article, id: order.article_id if order.state == 'approved' || order.state =='succeeded'
+      can :read, Article, id: order.article_id
     end
   end
 end

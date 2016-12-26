@@ -1,22 +1,22 @@
  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
       <div class = 'form-group'>
-        <label for = 'user_email'>Email address</label>
-        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+        <label for = 'user_email'><%= t('devise.email') %></label>
+        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('devise.email') %>
       </div>
      <div class="form-group">
-       <label for = 'user_password'>Password</label>
+       <label for = 'user_password'><%= t('devise.password') %></label>
        <% if @minimum_password_length %>
-           <em>(<%= @minimum_password_length %> characters minimum)</em>
+           <em>(<%= @minimum_password_length %> <%= t('devise.characters_minimum') %>)</em>
        <% end %><br />
-       <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+       <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: t('devise.password') %>
      </div>
      <div class="form-group">
-       <label for = 'user_password_confirmation'>Confirm password</label>
-       <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm password' %>
+       <label for = 'user_password_confirmation'> <%= t('devise.confirm_password') %> </label>
+       <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: t('devise.confirm_password') %>
      </div>
      <div class="form-group">
-       <%= f.submit "Sign up", class: 'btn btn-success' %>
+       <%= f.submit t('devise.signup'), class: 'btn btn-success' %>
      </div>
   <% end %>
 

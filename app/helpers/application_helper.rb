@@ -1,4 +1,10 @@
 module ApplicationHelper
+  FLASH_CLASSES = {
+      notice: 'info',
+      alert: 'warning',
+      error: 'danger',
+      success: 'success'
+  }
   def bootstrap_class_for(flash_type)
     case flash_type
       when 'success'

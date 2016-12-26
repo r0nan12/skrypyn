@@ -12,6 +12,10 @@ $(document).ready(function () {
     $('.main_container').append('<div class="calendar"></div>');
     $('.calendar').append('<div><span class="fa fa-angle-left" id = "year_dec"></span><span class = "fa fa-angle-double-left" id = "month_dec"></span><span id = "date"></span><span <i class = "fa fa-angle-double-right" id = "month_inc"></span><span class="fa fa-angle-right" id = "year_inc"></span></div>');
     $('.calendar').append('<table><tr></tr></table>');
+    $('.calendar').append('<div class="close"  id="close_calendar">x</div>');
+    $('#close_calendar').click(function (e) {
+        $(e.target).parent().css('display','none');
+    });
 
     for(i=0;i<7;i++){
         $('.calendar table tr').append('<th>'+days_arr[i]+'</th>');
@@ -26,7 +30,7 @@ $(document).ready(function () {
 
     insert_dates_in_table(year, month);
 
-    $('.calendar div').on('click',function (e) {
+    $('.calendar div').click(function (e) {
         if($(e.target).attr('id')=='year_inc'){
             year++;
         }
