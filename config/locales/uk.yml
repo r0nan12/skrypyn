@@ -1,4 +1,8 @@
 uk:
+
+    nav:
+      login: 'Вхід'
+      logout: 'Вихід'
     articles:
       new:
         text: 'Текст'

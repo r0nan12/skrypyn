@@ -1,5 +1,8 @@
 
 en:
+    nav:
+       login: 'Log in'
+       logout: 'Log out'
     articles:
       new:
         text: 'Text'

@@ -1,12 +1,12 @@
 body {
-  button{
-    min-width: 100px;
-  }
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
   color: #333333;
 }
 
+.navbar{
+  margin:0;
+}
 
 p {
   line-height: 1.5;
@@ -68,7 +68,7 @@ hr.small {
       font-weight: 600;
     }
     h1 {
-      font-size: 35px;
+      font-size: 25px;
     }
     .subheading,
     .meta {
@@ -100,29 +100,17 @@ hr.small {
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .intro-header .site-heading,
-  .intro-header .post-heading,
-  .intro-header .page-heading {
-    padding: 150px 0;
-  }
-  .intro-header .site-heading h1,
-  .intro-header .page-heading h1 {
-    font-size: 80px;
-  }
+.intro-header .site-heading,
+.intro-header .post-heading,
+.intro-header .page-heading {
+  padding: 150px 0;
 }
+
 
 .intro-header .post-heading .meta a {
   color: white;
 }
-@media only screen and (min-width: 768px) {
-  .intro-header .post-heading h1 {
-    font-size: 55px;
-  }
-  .intro-header .post-heading .subheading {
-    font-size: 30px;
-  }
-}
+
 .post-preview > a {
   color: #333333;
 }

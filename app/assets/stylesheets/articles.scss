@@ -1,4 +1,54 @@
+@media (min-width: $screen-md){
+  .search_form {
+    width: 30%;
+  }
+}
+
+@media (min-width: $screen-xs) and (max-width: $screen-md){
+  .search_form {
+    width: 40%;
+  }
+}
+
+@media (max-width: $screen-xs){
+  .intro-header{
+    height: 150px;
+    .container-fluid{
+      max-height: 100px;
+      .row{
+        .site-heading{
+          h1{
+            font-size: 30px;
+          }
+          .subheading{
+            font-size: 15px;
+          }
+          height: 100%;
+        }
+        max-height: 80px;
+      }
+    }
+    .site-heading{
+      height: 100%;
+      padding: 0;
+    }
+  }
+  .search_form {
+    width: 50%;
+  }
+}
+
+
+
+
 $calendar-color: lightgrey;
+
+.alert{
+  position: absolute;
+  top:90px;
+  z-index: 2;
+  right: 10px;
+}
 
 .error{
   border: solid red;
@@ -6,9 +56,9 @@ $calendar-color: lightgrey;
 
 #locale{
   a{
+    padding-right: 25px;
     color:white;
   }
-  padding-right: 50px;
   text-align: right;
 }
 
@@ -48,26 +98,7 @@ article .post-title{
   overflow: hidden;
 }
 
-@media (min-width: 1200px){
-  .search_form {
-    width: 30%;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px){
-  .search_form {
-    width: 40%;
-  }
-}
-
-@media (max-width: 768px){
-  .search_form {
-    width: 50%;
-  }
-}
-
 .search_form {
-
   #search {
     width: auto;
     position: relative;
@@ -90,11 +121,6 @@ article .post-title{
         color : black;
       }
     }
-  }
-
-  input {
-    font-size: large;
-    width: auto;
   }
 }
 
@@ -170,15 +196,12 @@ article .post-title{
   padding-right: 20px;
 }
 
-#article_text {
-  font-size: medium;
-  width: 1200px;
-  height: 250px;
-}
-
-.edit_article textarea{
-  width: 100%;
-  height: 250px;
+.edit_article{
+  textarea{
+    font-size: medium;
+    width: $screen-lg;
+    height: 250px;
+  }
 }
 
 .paginate{

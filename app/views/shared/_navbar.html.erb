@@ -1,0 +1,39 @@
+<nav class = 'navbar navbar-default'>
+  <div class = 'container-fluid'>
+    <div class = 'navbar-header'>
+      <button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#bs-example-navbar-collapse-1' aria-expanded = 'false'>
+        <span class = 'sr-only'>Toggle navigation</span>
+        <span class = 'icon-bar'></span>
+        <span class = 'icon-bar'></span>
+        <span class = 'icon-bar'></span>
+      </button>
+      <a class = 'navbar-brand' href = 'http://localhost:3000'> <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <%= form_tag(articles_search_path, method: 'get', class: 'search_form navbar-form navbar-left', remote: 'true', AUTOCOMPLETE: 'off' ) do %>
+          <div id = 'search' class = 'input-group'>
+            <%= text_field_tag :q, '', class: 'form-control', placeholder: t('articles.search_article') %> <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <div class = "search_result">
+            </div>
+          </div>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if can? :create, Article %>
+                    <li> <%= link_to t('articles.add_new_article'), new_article_path %></li>
+                <% end %>
+                <li role="separator" class="divider"></li>
+                <li>  <%= link_to t('nav.logout'),  destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+        <% else %>
+            <li>  <%= link_to t('nav.login'),  new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

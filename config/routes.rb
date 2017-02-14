@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'orders/new',to: 'orders#new'
   post 'orders/liqpay', to: 'orders#liqpay'
   post 'orders/stripe', to: 'orders#stripe'
+  get 'orders/stripe', to: 'orders#stripe'
   get 'orders/paypal', to: 'orders#paypal'
   post 'orders/paypal', to: 'orders#paypal'
   get 'orders/execute_paypal', to: 'orders#execute_paypal'

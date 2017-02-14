@@ -52,8 +52,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by_payment_id(payment_id)
     @payment = find_paypal(payment_id)
     if @payment.execute(payer_id: params[:PayerID])
-      @order.approve! if @order.may_approve?
-      add_role_follower
+      update_order(@payment.id, @payment.transactions[0].amount.total)
       redirect_to action: 'success', id: @order.id
     else
       flash[:error] = 'Payment failed'

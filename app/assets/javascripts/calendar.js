@@ -78,24 +78,27 @@ $(document).ready(function () {
             e.innerText = '';
         });
 
-        startDay = new Date(year, +(month), 1);
-        var wd = startDay.getDay();
-        if (wd == 0) {
-            wd = 7;
+        startDate = new Date(year, +(month), 1);
+        if (startDate.getDay() == 0){
+            var start_day = 7;
+            var wd = 7;
+        }else{
+            start_day = startDate.getDay();
+            wd = startDate.getDay();
         }
         lastDay = new Date(year,month + 1, 0);
+
         for (i = 1; i <= lastDay.getDate(); i++) {
-            $('.calendar table').find('td')[wd - 1].innerText = i;
-            wd++;
+            $('.calendar table').find('td')[start_day - 1].innerText = i;
+            start_day++;
         }
-        for(i=0;i< $('.calendar table').find('td').length;i++){
-            if ($('.calendar table').find('td')[i].innerText==''){
+        for(i = 0;i< $('.calendar table').find('td').length;i++) {
+            if ($('.calendar table').find('td')[i].innerText=='') {
                 $('.calendar table').find('td')[i].innerText = '-';
             }
         }
-
            if ( year == currentdate.getFullYear() && month == currentdate.getMonth()) {
-                $('.calendar table').find('td')[currentdate.getDate()+startDay.getDay()-2].style.backgroundColor = 'red';
+                $('.calendar table').find('td')[currentdate.getDate() + wd- 2].style.backgroundColor = 'red';
             }
             else
                $('.calendar table').find('td').attr('style', '');

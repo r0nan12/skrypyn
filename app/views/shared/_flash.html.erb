@@ -1,8 +1,6 @@
-<div class = 'flash_notice'>
-  <% flash.each do |type, message| %>
-      <div class="alert alert-<%= ApplicationHelper::FLASH_CLASSES[type.to_sym] %> alert-dismissable fade in">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= message %>
-      </div>
-  <% end %>
-</div>
+<% flash.each do |type, message| %>
+    <div class="alert alert-<%= ApplicationHelper::FLASH_CLASSES[type.to_sym] %> alert-dismissable fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+<% end %>
