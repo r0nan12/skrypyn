@@ -28,8 +28,8 @@ module PaypalService
               currency: 'USD' },
           description: description }],
         redirect_urls: {
-            return_url: 'http://localhost:3000/orders/execute_paypal',
-            cancel_url: 'http://localhost:3000' }
+            return_url: 'http://898f9d90.ngrok.io/orders/execute_paypal',
+            cancel_url: 'http://898f9d90.ngrok.io' }
     }
   end
 end

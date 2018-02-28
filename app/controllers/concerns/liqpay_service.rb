@@ -14,7 +14,7 @@ module LiqpayService
         currency: 'UAH',
         order_id: @order.id,
         description: @order.article.title,
-        result_url: 'http://'+request.host + '/success/'+'?id='+id,
+        result_url: 'http://'+request.host + '/success/' + id.to_s,
         server_url: 'http://'+request.host + orders_liqpay_path
     }
   end

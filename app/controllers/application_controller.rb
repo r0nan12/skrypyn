@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path)
   end
 
-  rescue_from ::TypeError do |error|
-    flash[:error] = 'Wrong data'
-    redirect_back(fallback_location: root_path)
-  end
 
   rescue_from Liqpay::InvalidResponse do |error|
     flash[:error] = error.message
